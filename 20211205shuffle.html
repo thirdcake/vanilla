@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fisher yates shuffle</title>
+</head>
+<body>
+
+  <p>click and shuffle 10</p>
+
+  <script>
+
+    function shuffle(len) {
+      const array = [...Array(len)].map((_, i) => i);
+      while (true) {
+        const random = (Math.random() * len) | 0;
+        len -= 1;
+        if (len === 0) return array;
+        [array[random], array[len]] = [array[len], array[random]];
+      }
+    }
+
+    // 実行
+    document.querySelector('p').onclick = function() {
+      this.appendChild(document.createElement('br'));
+      this.appendChild(document.createTextNode(`[${shuffle(10)}]`));
+    };
+
+  </script>
+</body>
+</html>
